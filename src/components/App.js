@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Link } from "react-router-dom";
 const PageOne = () => {
   return (
     <div>
-      <Link to="/pagetwo">Navigate to Page Two</Link>
+      This is Page One <Link to="/pagetwo">Link to Page One</Link>
     </div>
   );
 };
@@ -12,7 +12,7 @@ const PageOne = () => {
 const PageTwo = () => {
   return (
     <div>
-      <Link to="/">Navigate to Page One</Link>
+      This is Page Two <Link to="/">Link to Page One</Link>
     </div>
   );
 };
