@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 //Field is a react component, reduxForm is a function similar to connect
 import { Field, reduxForm } from "redux-form";
+import { connect } from "react-redux";
+
+import { createStream } from "../../actions";
 
 class StreamCreate extends Component {
   renderError({ touched, error }) {
@@ -37,9 +40,9 @@ class StreamCreate extends Component {
     // );
   };
 
-  onSubmit(formValues) {
-    console.log(formValues);
-  }
+  onSubmit = (formValues) => {
+    this.props.createStream(formValues);
+  };
 
   render() {
     //run this to see all the properties we have action to
@@ -84,7 +87,10 @@ const validate = (formsValues) => {
 
 //reduxForm is very similar to connect, it takes a single object, it passes a ton of props to the ScreamCreate component
 //validate is a function that we define, it goes in the object and is defined just above
-export default reduxForm({
+
+const formWrapped = reduxForm({
   form: "streamCreate",
   validate: validate,
 })(StreamCreate);
+
+export default connect(null, { createStream })(formWrapped);
