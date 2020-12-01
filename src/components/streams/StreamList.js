@@ -8,6 +8,25 @@ class StreamList extends Component {
     this.props.fetchStreams();
   }
 
+  onEditClick = () => {
+    console.log("edit");
+  };
+
+  onDeleteClick = () => {
+    console.log("delete");
+  };
+
+  buttonRender = (stream) => {
+    if (stream.userId === this.props.currentUserId) {
+      return (
+        <div>
+          <button onClick={this.onEditClick}>Edit</button>
+          <button onClick={this.onDeleteClick}>Delete</button>
+        </div>
+      );
+    }
+  };
+
   renderList = () => {
     return this.props.streams.map((stream) => {
       return (
@@ -17,6 +36,7 @@ class StreamList extends Component {
             {stream.title}
             <div className="description">{stream.description}</div>
           </div>
+          {this.buttonRender(stream)}
         </div>
       );
     });
@@ -35,7 +55,10 @@ class StreamList extends Component {
 const mapStateToProps = (state) => {
   //turns object into an array
   const arr = Object.values(state.streams);
-  return { streams: arr };
+  return {
+    streams: arr,
+    currentUserId: state.auth.userId,
+  };
 };
 
 export default connect(mapStateToProps, { fetchStreams })(StreamList);
