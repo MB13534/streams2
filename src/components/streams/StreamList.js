@@ -8,38 +8,69 @@ class StreamList extends Component {
     this.props.fetchStreams();
   }
 
-  onEditClick = () => {
-    console.log("edit");
+  onEditClick = (stream) => {
+    console.log("EDIT");
+    console.log(stream);
   };
 
-  onDeleteClick = () => {
-    console.log("delete");
+  onDeleteClick = (stream) => {
+    console.log("DELETE");
+    console.log(stream);
   };
 
-  buttonRender = (stream) => {
+  onCreateClick = () => {
+    console.log("CREATE");
+  };
+
+  renderAdmin = (stream) => {
     if (stream.userId === this.props.currentUserId) {
       return (
+        <div className="right floated content">
+          <button
+            className="ui button primary"
+            onClick={() => this.onEditClick(stream)}
+          >
+            Edit
+          </button>
+          <button
+            className="ui button negative"
+            onClick={() => this.onDeleteClick(stream)}
+          >
+            Delete
+          </button>
+        </div>
+      );
+    }
+  };
+
+  renderCreateButton = () => {
+    if (this.props.isSignedIn) {
+      return (
         <div>
-          <button onClick={this.onEditClick}>Edit</button>
-          <button onClick={this.onDeleteClick}>Delete</button>
+          <button onClick={this.onCreateClick}>Create Stream</button>
         </div>
       );
     }
   };
 
   renderList = () => {
-    return this.props.streams.map((stream) => {
-      return (
-        <div className="item" key={stream.id}>
-          <i className="large middle aligned icon camera" />
-          <div className="content">
-            {stream.title}
-            <div className="description">{stream.description}</div>
-          </div>
-          {this.buttonRender(stream)}
-        </div>
-      );
-    });
+    return (
+      <>
+        {this.props.streams.map((stream) => {
+          return (
+            <div className="item" key={stream.id}>
+              {this.renderAdmin(stream)}
+              <i className="large middle aligned icon camera" />
+              <div className="content">
+                {stream.title}
+                <div className="description">{stream.description}</div>
+              </div>
+            </div>
+          );
+        })}
+        {this.renderCreateButton()}
+      </>
+    );
   };
 
   render() {
@@ -58,6 +89,7 @@ const mapStateToProps = (state) => {
   return {
     streams: arr,
     currentUserId: state.auth.userId,
+    isSignedIn: state.auth.isSignedIn,
   };
 };
 
