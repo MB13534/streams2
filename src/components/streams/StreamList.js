@@ -9,32 +9,19 @@ class StreamList extends Component {
     this.props.fetchStreams();
   }
 
-  onEditClick = (stream) => {
-    console.log("EDIT");
-    console.log(stream);
-  };
-
-  onDeleteClick = (stream) => {
-    console.log("DELETE");
-    console.log(stream);
-  };
-
   renderAdminButtons = (stream) => {
     if (stream.userId === this.props.currentUserId) {
       return (
         <div className="right floated content">
-          <button
-            className="ui button primary"
-            onClick={() => this.onEditClick(stream)}
-          >
+          <Link to={`/streams/edit/${stream.id}`} className="ui button primary">
             Edit
-          </button>
-          <button
+          </Link>
+          <Link
+            to={`/streams/edit/${stream.id}`}
             className="ui button negative"
-            onClick={() => this.onDeleteClick(stream)}
           >
             Delete
-          </button>
+          </Link>
         </div>
       );
     }
