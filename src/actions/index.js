@@ -41,15 +41,18 @@ export const createStream = (formValues) => async (dispatch, getState) => {
   const { userId } = getState().auth;
   const response = await streams.post("/streams", { ...formValues, userId });
 
+  dispatch({ type: CREATE_STREAM, payload: response.data });
   //programatic navigation
   history.push("/");
-  dispatch({ type: CREATE_STREAM, payload: response.data });
 };
 
+//put request updates all properties of a record
+//patch request updates some properties
 export const editStream = (id, formValues) => async (dispatch) => {
-  const response = await streams.put(`/streams/${id}`, formValues);
+  const response = await streams.patch(`/streams/${id}`, { ...formValues });
 
   dispatch({ type: EDIT_STREAM, payload: response.data });
+  history.push("/");
 };
 
 export const deleteStream = (id) => async (dispatch) => {
