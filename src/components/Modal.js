@@ -10,6 +10,7 @@ const Modal = ({ title, content, actions, onDismiss }) => {
         onClick={(e) => e.stopPropagation()}
         className="ui standard modal visible active"
       >
+        {/* <i className="close icon black"></i> */}
         <div className="header">{title}</div>
         <div className="content">{content}</div>
         <div className="actions">{actions}</div>
