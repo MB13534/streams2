@@ -6,6 +6,7 @@ import { createStream } from "../../actions";
 import StreamForm from "./StreamForm";
 
 class StreamCreate extends Component {
+  //run createStream action creator when submit button is pressed
   onSubmit = (formValues) => {
     this.props.createStream(formValues);
   };

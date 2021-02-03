@@ -8,6 +8,7 @@ import history from "../../history";
 
 class StreamDelete extends Component {
   componentDidMount() {
+    //runs action creator on currently selected stream incase page is reloaded
     this.props.fetchStream(this.props.match.params.id);
   }
 
@@ -15,11 +16,13 @@ class StreamDelete extends Component {
     return (
       <>
         <button
+          //delete stream action creator when delete is pressed
           onClick={() => this.props.deleteStream(this.props.stream.id)}
           className="ui button negative"
         >
           Delete
         </button>
+        {/* navigate back to home page if cancel is pressed */}
         <Link to="/" className="ui button">
           Cancel
         </Link>
@@ -28,18 +31,24 @@ class StreamDelete extends Component {
   }
 
   renderContent() {
+    //before the stream loads the notification lacks the title
     if (!this.props.stream) {
       return "Are you sure you want to delete the stream with title:";
     }
+    //once the stream is loaded the title is added
     return `Are you sure you want to delete the stream with title: ${this.props.stream.title}`;
   }
 
   render() {
     return (
+      //modal is the full page notification
       <Modal
         title="Delete Stream"
+        //what text/content should appear in the middle
         content={this.renderContent()}
+        //two action buttons that should be sent as props
         actions={this.renderActions()}
+        //the route when you click outside of the modal
         onDismiss={() => history.push("/")}
       />
     );

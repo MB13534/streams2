@@ -8,7 +8,10 @@ import reduxThunk from "redux-thunk";
 import App from "./components/App";
 import reducers from "./reducers";
 
+//redux dev tools chrome extension
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+//reducerse are combined in the reducer index
 const store = createStore(
   reducers,
   composeEnhancers(applyMiddleware(reduxThunk))

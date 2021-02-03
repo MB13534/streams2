@@ -6,9 +6,11 @@ import { fetchStreams } from "../../actions";
 
 class StreamList extends Component {
   componentDidMount() {
+    //fetch all streams from DB on load; action creator
     this.props.fetchStreams();
   }
 
+  //helper function to create edit and delete buttons if the current user created the stream
   renderAdminButtons = (stream) => {
     if (stream.userId === this.props.currentUserId) {
       return (
@@ -27,6 +29,7 @@ class StreamList extends Component {
     }
   };
 
+  //helper function to make the create button, will only render if the user is signed in
   renderCreateButton = () => {
     if (this.props.isSignedIn) {
       return (
@@ -40,6 +43,7 @@ class StreamList extends Component {
   };
 
   renderList = () => {
+    //map through all streams to render streams, links to individual buttons, and admin buttons if necessary
     return this.props.streams.map((stream) => {
       return (
         <div className="item" key={stream.id}>

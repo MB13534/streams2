@@ -14,10 +14,6 @@ class StreamForm extends Component {
   }
 
   renderInput = ({ input, label, meta }) => {
-    // console.log(formProps);
-    //the error messages are on the meta tag
-    // console.log(meta);
-
     //short hand to send all of the .input from formProps.input into the <input> as props
     //destructred input out of formProps.input
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
@@ -28,13 +24,6 @@ class StreamForm extends Component {
         {this.renderError(meta)}
       </div>
     );
-
-    // return (
-    //   <input
-    //     onChange={formProps.input.onChange}
-    //     value={formProps.input.value}
-    //   ></input>
-    // );
   };
 
   onSubmit = (formValues) => {
@@ -42,9 +31,6 @@ class StreamForm extends Component {
   };
 
   render() {
-    //run this to see all the properties we have action to
-    // console.log(this.props);
-
     return (
       //use Field when we want to show an input to the user
       //formProps send over to renderInput when Field calls it
