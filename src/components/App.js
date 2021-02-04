@@ -23,12 +23,20 @@ const App = () => {
         <>
           <Header />
           <Switch>
-            <Route path="/" exact component={StreamList} />
-            <Route path="/streams/new" exact component={StreamCreate} />
-            <Route path="/streams/edit/:id" exact component={StreamEdit} />
-            <Route path="/streams/delete/:id" exact component={StreamDelete} />
+            <Route path="/streams2-client/" exact component={StreamList} />
+            <Route path="/streams2-client/new" exact component={StreamCreate} />
+            <Route
+              path="/streams2-client/edit/:id"
+              exact
+              component={StreamEdit}
+            />
+            <Route
+              path="/streams2-client/delete/:id"
+              exact
+              component={StreamDelete}
+            />
             {/* the new components path matches this id so we use Switch which will only show one route at any given time*/}
-            <Route path="/streams/:id" exact component={StreamShow} />
+            <Route path="/streams2-client/:id" exact component={StreamShow} />
           </Switch>
         </>
       </Router>
