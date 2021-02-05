@@ -24,13 +24,13 @@ export const signOut = () => {
 };
 
 export const fetchStreams = () => async (dispatch) => {
-  const response = await streams.get("/streams");
+  const response = await streams.get("/streams2-client");
 
   dispatch({ type: FETCH_STREAMS, payload: response.data });
 };
 
 export const fetchStream = (id) => async (dispatch) => {
-  const response = await streams.get(`/streams/${id}`);
+  const response = await streams.get(`/streams2-client/${id}`);
 
   dispatch({ type: FETCH_STREAM, payload: response.data });
 };
@@ -39,7 +39,10 @@ export const fetchStream = (id) => async (dispatch) => {
 //return arrow function from action creator with dispatch as first arg
 export const createStream = (formValues) => async (dispatch, getState) => {
   const { userId } = getState().auth;
-  const response = await streams.post("/streams", { ...formValues, userId });
+  const response = await streams.post("/streams2-client", {
+    ...formValues,
+    userId,
+  });
 
   dispatch({ type: CREATE_STREAM, payload: response.data });
   //programatic navigation
@@ -49,15 +52,17 @@ export const createStream = (formValues) => async (dispatch, getState) => {
 //put request updates all properties of a record
 //patch request updates some properties
 export const editStream = (id, formValues) => async (dispatch) => {
-  const response = await streams.patch(`/streams/${id}`, { ...formValues });
+  const response = await streams.patch(`/streams2-client/${id}`, {
+    ...formValues,
+  });
 
   dispatch({ type: EDIT_STREAM, payload: response.data });
   history.push("/");
 };
 
 export const deleteStream = (id) => async (dispatch) => {
-  await streams.delete(`streams/${id}`);
+  await streams.delete(`/streams2-client${id}`);
 
   dispatch({ type: DELETE_STREAM, payload: id });
-  history.push("/");
+  history.push("/streams2-client");
 };
