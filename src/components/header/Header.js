@@ -7,11 +7,11 @@ import GoogleAuth from "../GoogleAuth";
 const Header = () => {
   return (
     <div className="ui secondary pointing menu">
-      <Link to="/" className="item">
+      <Link to="/streams2-client" className="item">
         StreamSling
       </Link>
       <div className="right menu">
-        <Link to="/" className="item">
+        <Link to="/streams2-client" className="item">
           All Streams
         </Link>
 

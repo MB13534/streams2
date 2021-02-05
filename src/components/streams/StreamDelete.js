@@ -23,7 +23,7 @@ class StreamDelete extends Component {
           Delete
         </button>
         {/* navigate back to home page if cancel is pressed */}
-        <Link to="/" className="ui button">
+        <Link to="/streams2-client" className="ui button">
           Cancel
         </Link>
       </>
