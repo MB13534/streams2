@@ -46,7 +46,7 @@ export const createStream = (formValues) => async (dispatch, getState) => {
 
   dispatch({ type: CREATE_STREAM, payload: response.data });
   //programatic navigation
-  history.push"/streams2-client");
+  history.push("/streams2-client");
 };
 
 //put request updates all properties of a record
