@@ -46,7 +46,7 @@ export const createStream = (formValues) => async (dispatch, getState) => {
 
   dispatch({ type: CREATE_STREAM, payload: response.data });
   //programatic navigation
-  history.push("/");
+  history.push"/streams2-client");
 };
 
 //put request updates all properties of a record
@@ -57,7 +57,7 @@ export const editStream = (id, formValues) => async (dispatch) => {
   });
 
   dispatch({ type: EDIT_STREAM, payload: response.data });
-  history.push("/");
+  history.push("/streams2-client");
 };
 
 export const deleteStream = (id) => async (dispatch) => {

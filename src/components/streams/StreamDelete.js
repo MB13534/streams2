@@ -49,7 +49,7 @@ class StreamDelete extends Component {
         //two action buttons that should be sent as props
         actions={this.renderActions()}
         //the route when you click outside of the modal
-        onDismiss={() => history.push("/")}
+        onDismiss={() => history.push("/streams2-client")}
       />
     );
   }
